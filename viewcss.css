@@ -1,0 +1,19 @@
+.book_container{
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   gap:10px;
+
+    
+}
+.book_container{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin-right: 30px;
+}
+.ayesha45{
+    font-size: 60px;
+     
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 290px;
+}
