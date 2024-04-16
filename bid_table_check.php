@@ -3,7 +3,7 @@
 date_default_timezone_set("Asia/Dhaka");
     $user = "root";
     $pass = "";
-    $db = "login";
+    $db = "bookdb";
 	
 	$db_connect = mysqli_connect("localhost", $user, $pass, $db) or die("no database found");
     //echo "Database Connected"."<br>";

@@ -1,5 +1,15 @@
 
- <?php session_start();include "db_conn.php"; ?>
+<?php
+
+session_start();
+
+require_once('php/CreateDb.php');
+require_once('php/component.php');
+///create instance of createdb class
+$database=new CreateDb("Bookdb","newbooks");
+
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,51 +27,40 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/review.css">
-<link rel="stylesheet" href="styleabout.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
 
 </head>
 <body>
-<?php 
-if($_SESSION['islogged']==true)
-require_once('php/header2.php');
-else
-require_once('php/header.php');
+<?php require_once('php/header.php');
 
 ?>
-  <div class="pop1"> 
-        <div class="k3">
-            
-            <blockquote><p class="pop98">"It is is better to know one book intimately<br> than a hundred superficially."</p>
-                <cite class="k9">~Donna Tartt, <em>The Secret History</em></cite></blockquote>   
-        </div>
-
-        <div class="k1">
-            About Us
-            
-        </div>
-        <div class="k2">
-             
-            Hey Bookworms!! You are at the right place for your desired book.The BookLand team is committed to bring all kinds of best book in
-             the world at as cheaper price as possible.
-            It provides different categories of book. It includes comics, novels, fantasy, mystery, action,educational (To keep your parents happy<em>&#128515;</em>),best seller books. 
-            If you are searching for a book only write the name of book on search option, we will try to find out the book even if we have to move heaven, earth and even old cupboards to find it for you.
-            <br> <br>  Are you worry about where to keep the stack of your old and unwanted books?  <br><em class="k10"> No Worry!!</em>We are here with an exciting 
-            option of selling your old books. The website provides a bidding section which deals with this old books.
-            The book you bid for sell will go through an auction phase to get the desirable price of book.
-            BookLand will be wise option for people who are looking to save money on book cost.
-        <br>
-        I know , I have brainwashed you. To enjoy the exiciting features of the website, please browse the store and make a good use of it.
-          Browse through them amd order. Don't forget your friendly website, BookLand.
-        We, surely shall never forget you!
-        <br>
-        <br>
-        </div>
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-8"><img src="back.jpg" alt="booksloversday" style="height:550px"></div>
+    <div class="col-4">
+    <a href="register.php" class="nav-item nav-link active bg-light"style=" border: 1px solid darkblue "><div class="row pt-2 center ">Sell Your Old Book!!</div></a><hr>
+    <a href="Newbooks.php" class="nav-item nav-link active bg-light" style=" border: 1px solid darkblue"><div class="row pt-2 center">New Arrival Books</div></a><hr>
+    <a href="register.php" class="nav-item nav-link active bg-light" style=" border: 1px solid darkblue"><div class="row pt-2 center">Auction Section</div></a><hr>
     </div>
-        </body>
-         
+  </div>
+</div>
+ <br><br>
+ <center><h2>Recently sold Books</h2></center>
+ <br>
+<div class="container">
+    <div class="row text-center py-2">
+    <?php
+    $result=$database->getData();
+    while ($row = mysqli_fetch_assoc($result)){
+    component1($row['book_name'], $row['author_name'], $row['prev_price'], $row['book_price'],$row['book_image'],$row['id']);
+}
+ ?>
+    </div>
+</div>
+<br><br>
 
-        <footer id="body1" class="footer" >
+<footer id="body1" class="footer" >
         <div class="container">
             <div class="row">
                  

@@ -1,36 +1,35 @@
 <?php 
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "login");
+$conn = mysqli_connect("localhost", "root", "", "Bookdb");
 
 if (!$conn) {
     echo "Connection Failed";
 }
 $msg = "";
 
-
 if (isset($_POST['submit'])) {
+    
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-    $fname=mysqli_real_escape_string($conn, $_POST['fname']);
-    $lname=mysqli_real_escape_string($conn, $_POST['lname']);
+   // $fname=mysqli_real_escape_string($conn, $_POST['fname']);
+    //$lname=mysqli_real_escape_string($conn, $_POST['lname']);
 
     $sql = "SELECT * FROM users WHERE email='{$email}' AND password='{$password}'";
     $result = mysqli_query($conn, $sql);
-    $_SESSION['logged']==true;
-    $_SESSION['user_name']=$fname;
-    $_SESSION['last_name']=$lname;
+    
+ 
     if (mysqli_num_rows($result) === 1) {
        
-        $row = mysqli_fetch_assoc($result);
-        
-         
-           
-            header("Location: home2.php");
+       // $row = mysqli_fetch_assoc($result);
+       $_SESSION['email']=$email;
+       $_SESSION['islogged']=true;
+            header("Location: indexafter.php");
         
        
     } else {
-        $msg = "<div class='alert alert-danger' style='color:black;text-align: center'>     Email or password do not match.</div>";
+        $msg = "<div class='alert alert-danger' style='color:yellow;text-align: center'>     Email or password do not match.</div>";
     }
+ 
 }
 
 
@@ -43,8 +42,18 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="register.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/register.css">
+    <title>Login</title>
+    <style>
+        .ayesha4{
+    text-align: center;
+    color:#750904 ;
+    font-size: 15px;
+     margin-top: 8px;
+    margin-left: 9px;
+    font-weight: bold;
+}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -60,7 +69,7 @@ if (isset($_POST['submit'])) {
                             <button name="submit" name="submit"class="ayesha2" class="btn" type="submit">Submit</button>
                         </form>
                         <div class="social-icons">
-                            <p class="ayesha3">Not have an account <a href="register.php"class="ayesha4">Sign Up here</a>.</p>
+                            <p class="ayesha3">Not have an account ?<a href="register.php"class="ayesha4">Sign Up here</a>.</p>
                         </div>
                     </div>
         </div>

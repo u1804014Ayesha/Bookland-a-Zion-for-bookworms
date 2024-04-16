@@ -1,12 +1,11 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "login");
+$conn = mysqli_connect("localhost", "root", "", "Bookdb");
 
 if (!$conn) {
     echo "Connection Failed";
 }
 $msg = "";
-$_SESSION['logged']=false;
 if (isset($_POST['submit'])) {
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
@@ -14,9 +13,9 @@ if (isset($_POST['submit'])) {
     $password = mysqli_real_escape_string($conn, md5($_POST['password']));
     $confirm_password = mysqli_real_escape_string($conn, md5($_POST['confirm-password']));
 
-    $_SESSION['logged']=false;
+
     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE email='{$email}'")) > 0) {
-        $msg = "<div class='alert alert-danger'>{$email} - This email address has been already exists.</div>";
+        $msg = "<div class='alert alert-danger'style=\"color:yellow;text-align:center\">{$email} - This email address has been already exists.</div>";
     } else {
         if ($password === $confirm_password) {
             $sql = "INSERT INTO users (fname,lname, email, password) VALUES ('{$fname}', '{$lname}','{$email}', '{$password}')";
@@ -27,13 +26,14 @@ if (isset($_POST['submit'])) {
                 $_SESSION['user_name']=$fname;
                 $_SESSION['last_name']=$lname;
                 $msg = "Account Verification Complete";
-                header("Location: home2.php");
+                header("Location: login.php");
             } else {
-                $_SESSION['logged']=false;
+                $_SESSION['logged']=true;
                 $msg = "Something went wrong";
             }
         } else {
-            $msg = "Password and Confirm Password do not match";
+            $msg = "<div class='alert alert-danger' style='color:yellow;text-align: center'> Password and Confirm Password do not match</div>";
+          
         }
     }
 }
@@ -46,8 +46,18 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="register.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/register.css">
+    <title>Signup</title>
+    <style>
+   .ayesha4{
+    text-align: center;
+    color:#750904 ;
+    font-size: 15px;
+    . margin-top: 8px;
+    margin-left: 9px;
+    font-weight: bold;
+}
+    </style>
 </head>
 
 <body>
@@ -73,7 +83,7 @@ if (isset($_POST['submit'])) {
              </form>
          
             <div class="social-icons">
-                <p class="ayesha3">Already have an account<a href="login.php" class="ayesha4">Login here</a>.</p>
+                <p class="ayesha3">Already have an account?<a href="login.php" class="ayesha4" text>Login here</a>.</p>
             </div>
         </div>
     </div>

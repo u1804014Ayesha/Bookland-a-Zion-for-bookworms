@@ -1,5 +1,5 @@
 
- <?php session_start();include "db_conn.php"; ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,123 +13,16 @@
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/shopping.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/review.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+
 </head>
-<style>
-    .ooo{
-    color: antiquewhite;
-    font-family:'Times New Roman', Times, serif;
-    text-decoration: solid;
-    text-align:center;
-    font-weight: bolder;
-    font-variant: small-caps;
-    font-size: 40px;
-    padding-left: 32%;
-   
-  }
-  h3{
-    color: hotpink;
-    margin-left :120px;
-    padding-left: 50%;
-    font-style: italic;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-#body1{
-	line-height: 1.5;
-	font-family: 'Poppins', sans-serif;
-}
-*{
-	margin:0;
-	padding:0;
-	box-sizing: border-box;
-}
-.container{
-	max-width: 1170px;
-	margin:auto;
-     font-weight: bolder;
-
-}
-.row{
-	display: flex;
-	flex-wrap:wrap;
-}
-.foname{
-	list-style: none;
-}
-.footer{
-	background-color: #24262b;
-    padding: 70px 0;
-}
-.footer-col{
-   width: 25%;
-   padding: 0 15px;
-}
-.footer-col h4{
-	font-size: 18px;
-	color:whitesmoke;
-	text-transform: capitalize;
-	margin-bottom: 35px;
-	font-weight: 500;
-	position: relative;
-    font-weight: bolder;
-}
-.footer-col h4::before{
-	content: '';
-	position: absolute;
-	align-items: center;
-	bottom: -10px;
-	background-color: hotpink;
-	height: 2px;
-	box-sizing: border-box;
-	width: 50px;
-}
-.footer-col ul li a{
-	font-size: 16px;
-	text-transform: capitalize;
-	color: #ffffff;
-	text-decoration: none;
-	font-weight: 300;
-	color: #bbbbbb;
-	display: block;
-	transition: all 0.3s ease;
-}
-.footer-col ul li a:hover{
-	color: #ffffff;
-	padding-left: 8px;
-}
-.footer-col .social-links a{
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	background-color: grey;
-	margin:0 10px 10px 0;
-	text-align: center;
-	line-height: 40px;
-	border-radius: 50%;
-	color: #ffffff;
-	transition: all 0.5s ease;
-}
-.footer-col .social-links a:hover{
-	color: #24262b;
-	background-color: #ffffff;
-}
-@media(max-width: 767px){
-    .footer-col{
-      width: 50%;
-      margin-bottom: 30px;
-  }
-  }
-  @media(max-width: 574px){
-    .footer-col{
-      width: 100%;
-  }
-  }
-
-
-
-</style>
 <body>
-<?php if($_SESSION['islogged']==true)
+<?php 
+if($_SESSION['islogged']==true)
 require_once('php/header2.php');
 else
 require_once('php/header.php');
@@ -137,9 +30,9 @@ require_once('php/header.php');
 ?>
  
  <div class="backprivacy">
-            <div><br><br>
-                <div class="ooo">Bookland Privacy Policy</div>
-                <h3>   What we stands for</h3>
+            <div><br><br><br>
+                <h2>Bookland Privacy Policy</h2>
+                <h4>What we stands for</h4>
             </div>
         </div>  
         
@@ -189,13 +82,13 @@ require_once('php/header.php');
             We reserve the right to change or update this policy at any time by placing a prominent notice on our site. Such changes shall be effective immediately upon posting to this site.
             <br><br>
         </div>
-        <footer id="body1" class="footer" >
+<footer id="body1" class="footer" >
         <div class="container">
             <div class="row">
                  
                 <div class="footer-col">
                     <h4>get help</h4>
-                    <ul class="foname">
+                    <ul>
                         <li><a href="FAQ.php">FAQ</a></li>
                         <li><a href="aboutus.php">about us</a></li>
                         
@@ -204,12 +97,10 @@ require_once('php/header.php');
                 </div>
                 <div class="footer-col">
                     <h4>online shop</h4>
-                    <ul class="foname">
+                    <ul>
                         <li><a href="Newbooks.php">newbooks</a></li>
-                        <?php if($_SESSION['islogged']==true)
- echo '<li><a href="view.php">oldbooks</a></li>';
-else
-echo '<li><a href="register.php">oldbooks</a></li>';   ?>   
+                        <li><a href="view.php">oldbooks</a></li>
+                        
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -223,7 +114,7 @@ echo '<li><a href="register.php">oldbooks</a></li>';   ?>
                 </div>
             </div>
         </div>
-   </footer> 
+   </footer>
    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
